@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>Messenger</title>
+  </head>
+  <body>
+    <h2>Add a message</h2>
+    <form th:action="@{/messages/add}" th:object="${message}" method="post">
+      <div>
+        <label for="content">Content</label>
+        <input
+          type="text"
+          th:field="*{content}"
+          placeholder="Type in your message here..."
+        />
+        <div
+          th:if="${#fields.hasErrors('content')}"
+          th:errors="*{content}"
+        ></div>
+      </div>
+      <button>Add</button>
+      <a href="/">Cancel</a>
+    </form>
+  </body>
+</html>
