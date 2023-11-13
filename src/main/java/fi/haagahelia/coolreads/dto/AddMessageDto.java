@@ -1,6 +1,9 @@
 package fi.haagahelia.coolreads.dto;
 
+import jakarta.validation.constraints.Size;
+
 public class AddMessageDto {
+	@Size(min=1, message="Content is required")
 	private String content;
 	
 	public AddMessageDto() {

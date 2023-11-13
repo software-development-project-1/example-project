@@ -4,11 +4,14 @@
 <body>
 	<div layout:fragment="content">
 		<h1>Add a message</h1>
-		<form target="/messages/add" method="post">
+		<form th:action="@{/messages/add}" th:object="${message}" method="post">
 			<div class="mb-3">
-				<label for="content" class="form-label">Content </label> <input
-					type="text" class="form-control" id="content" name="content"
-					placeholder="Type in your message here..." required>
+				<label for="content" class="form-label">Content</label> <input
+					type="text" class="form-control" th:field="*{content}"
+					th:errorclass="is-invalid"
+					placeholder="Type in your message here..." />
+				<div th:if="${#fields.hasErrors('content')}"
+					th:errorclass="invalid-feedback" th:errors="*{content}"></div>
 			</div>
 
 			<button class="btn btn-primary">Add</button>
